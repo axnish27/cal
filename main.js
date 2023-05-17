@@ -4,7 +4,7 @@
   
   const arr = [];
   const displayArr=[];
-  let sum = 0;
+  let result = 0;
   let dvalue=0;
 
   function operations(digit) {
@@ -27,27 +27,27 @@
           console.log("optIndex",optIndex)
 
           if(i==0){
-            console.log("ifsum",sum)
+            console.log("ifresult",result)
             let num1;
-            if(sum==0){
+            if(result==0){
               num1 = parseFloat(arr.slice(0, optIndex).join(""));
               console.log("num1",num1)
             }
             else{
-              num1 = sum;
+              num1 = result;
               console.log("else num1",num1)
             }
 
             const num2 = parseFloat(arr.slice(optIndex + 1).join(""));
             console.log("num2",num2)
-            sum = operate(num1, operator, num2);
-            console.log("sum",sum)
+            result = operate(num1, operator, num2);
+            console.log("result",result)
           
           }
           else{
 
-            sum = (operate(sum, operator, arr[optIndex + 1]));
-            console.log("else sum",sum)
+            result = (operate(result, operator, arr[optIndex + 1]));
+            console.log("else result",result)
             
           }
           
@@ -59,7 +59,7 @@
         
       
         arr.length = 0; 
-        displaySum(sum)
+        displayresult(result)
         
       
       } 
@@ -67,8 +67,8 @@
         arr.length = 0;
         displayArr.length = 0;
         dvalue=0; 
-        sum=0;
-        displaySum(sum);
+        result=0;
+        displayresult(result);
 
         
       }
@@ -91,24 +91,24 @@
   digits.forEach(operations);
 
 
-  function displaySum(sum){
+  function displayresult(result){
     let display;
-    if( isNaN(sum) == 1 || sum === Infinity)
+    if( isNaN(result) == 1 || result === Infinity)
     {
       display = "ERROR";
     }
-    else if(isDecimal(sum) == 1){
+    else if(isDecimal(result) == 1){
       
-      let string = sum.toString()
+      let string = result.toString()
       const arr = string.split(".")
       const len = arr[1].length
       
       if(len > 7){
-        display = sum.toFixed(7)
+        display = result.toFixed(7)
       }
     }
     else{
-      display = sum;
+      display = result;
     } 
     return display2.innerHTML = display;
   }
