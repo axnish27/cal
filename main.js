@@ -12,9 +12,7 @@
   let dvalue=0;
   const idArr = ["1","2","3","4","5","6","7","8","9","0","+","-","*","/","delete","clear",".","="]
   
-    
-  
-  
+
   function operations(event){
       let eventType = event.type;
       let id;
@@ -31,36 +29,28 @@
 
       if (id == "=") {
         const operators = mainArr.filter(opt => opt == "+" || opt == "-" || opt == "*" || opt == "/" );
-        console.log(operators)
+       
         let operator;
         const len = operators.length
-        console.log("len",len)
+       
         for(let i = 0;len > i; i++){
           operator = operators[i] 
-          console.log(operator)
-          const optIndex = mainArr.indexOf(operator);
+                   const optIndex = mainArr.indexOf(operator);
           if(i==0){
             let num1;
             if(result==0){
               num1 = parseFloat(mainArr.slice(0, optIndex).join(""));
-              console.log("num1",num1)
             }
             else{
               num1 = result;
-              console.log("else num1",num1)
             }
-
             const num2 = parseFloat(mainArr.slice(optIndex + 1).join(""));
-            console.log("num2",num2)
             result = operate(num1, operator, num2);
-            console.log("result",result)
           
           }
           else{
 
             result = (operate(result, operator, mainArr[optIndex + 1]));
-            console.log("else result",result)
-            
           }
           
         }
@@ -86,7 +76,7 @@
         for(let i = 0; newArr.length > i;i++){
           mainArr.push(newArr[i])
         }
-        console.log("pushArr",mainArr)
+       mainArr)
         
 
       }*/
@@ -98,7 +88,7 @@
       
       else{
       mainArr.push(id);
-      console.log("array",mainArr)
+
       displayArr.push(id)
       dvalue = displayArr.join("");
       }
