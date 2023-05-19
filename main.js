@@ -1,36 +1,48 @@
-  const display = document.getElementById("display")
+  const display1 = document.getElementById("display")
   const display2 = document.getElementById("display2")
   const digits = document.querySelectorAll(".btn")
+
+  document.addEventListener('click',operations,false);
+  document.addEventListener('keydown',operations,false);
   
-  const arr = [];
+  
+  const mainArr = [];
   const displayArr=[];
   let result = 0;
   let dvalue=0;
+  const idArr = ["1","2","3","4","5","6","7","8","9","0","+","-","*","/","delete","clear",".","="]
+  
+    
+  
+  
+  function operations(event){
+      let eventType = event.type;
+      let id;
+      if(eventType === "keydown"){
+        id = keycodeConverter(event.keyCode);    
+      }
+      else if(eventType === "click"){
+        id = event.target.id;
+        if(idArr.includes(id) == false){
+          id = ""
+        }
 
-  function operations(digit) {
-    digit.addEventListener('click', function(event) {
-      let id = event.target.id;
+      }
 
       if (id == "=") {
-        
-        const operators = arr.filter(opt => opt == "+" || opt == "-" || opt == "*" || opt == "/" );
+        const operators = mainArr.filter(opt => opt == "+" || opt == "-" || opt == "*" || opt == "/" );
         console.log(operators)
-        
         let operator;
         const len = operators.length
         console.log("len",len)
         for(let i = 0;len > i; i++){
-          
           operator = operators[i] 
           console.log(operator)
-          const optIndex = arr.indexOf(operator);
-          console.log("optIndex",optIndex)
-
+          const optIndex = mainArr.indexOf(operator);
           if(i==0){
-            console.log("ifresult",result)
             let num1;
             if(result==0){
-              num1 = parseFloat(arr.slice(0, optIndex).join(""));
+              num1 = parseFloat(mainArr.slice(0, optIndex).join(""));
               console.log("num1",num1)
             }
             else{
@@ -38,7 +50,7 @@
               console.log("else num1",num1)
             }
 
-            const num2 = parseFloat(arr.slice(optIndex + 1).join(""));
+            const num2 = parseFloat(mainArr.slice(optIndex + 1).join(""));
             console.log("num2",num2)
             result = operate(num1, operator, num2);
             console.log("result",result)
@@ -46,50 +58,101 @@
           }
           else{
 
-            result = (operate(result, operator, arr[optIndex + 1]));
+            result = (operate(result, operator, mainArr[optIndex + 1]));
             console.log("else result",result)
             
           }
           
-          
-
-          
-        
         }
         
       
-        arr.length = 0; 
+        mainArr.length = 0;
         displayresult(result)
+        
         
       
       } 
+
       else if(id == "clear"){
-        arr.length = 0;
+        mainArr.length = 0;
         displayArr.length = 0;
         dvalue=0; 
         result=0;
         displayresult(result);
-
-        
       }
-      else {
-      arr.push(id);
-      console.log("array",arr)
+      /*
+      else if(id == "delete"){
+        const newArr = deleteOne(displayArr);
+        for(let i = 0; newArr.length > i;i++){
+          mainArr.push(newArr[i])
+        }
+        console.log("pushArr",mainArr)
+        
+
+      }*/
+
+      else if(id == "" || id == undefined){
+        //do nothing syntax is this....
+
+      }
+      
+      else{
+      mainArr.push(id);
+      console.log("array",mainArr)
       displayArr.push(id)
       dvalue = displayArr.join("");
       }
 
-      display.innerHTML = dvalue 
+      display1.innerHTML = dvalue ;
 
       
       
-    });
-  }
+    };
   
 
+/*  function deleteOne(arr){
+    arr.splice(-1,1)
+    arr.join("")
+    return arr
 
-  digits.forEach(operations);
+  }
+*/
 
+  function keycodeConverter(key){
+    if(key >= 48 && key <= 57 ){
+      key = key-48;    
+    }
+    else if(key >= 96 && key <= 105){
+      key = key-96;
+    }
+    else if(key == 13){
+      key = "=";
+    }
+    else if(key == 107){
+      key = "+";
+    }
+    else if(key == 109){
+      key = "-";
+    }
+    else if(key == 106){
+      key = "*";
+    }
+    else if(key == 111){
+      key = "/";
+    }
+    else if(key == 46){
+      key = "clear";
+    }
+    /*
+    else if(key == 8){
+      key = "delete";
+    }*/
+    else {
+      key = "";
+    }
+    return key
+
+  }
 
   function displayresult(result){
     let display;
@@ -105,6 +168,9 @@
       
       if(len > 7){
         display = result.toFixed(7)
+      }
+      else{
+        display = result
       }
     }
     else{

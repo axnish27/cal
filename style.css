@@ -1,52 +1,62 @@
+/*flexbox*/
+
+.cal,body,.displays,.buttons{
+    display: flex;
+    align-items: center;
+
+}
+
 body{
-    background-color:  /* 1C1C1C */ ;
-    display: flex;
+    background-color:  #1C1C1C ;
+    
     justify-content: center;
-    align-items: center;
-}
-
-.cal{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    
     flex-direction: column;
-    border: solid 5px black;
-    margin: 50px;
-    height: 600px;
-    width: 400px;
-}
-
-/*.buttons,.operators,.digits */
-
-/* .displays, .display, .display2 */
-.displays
-{
-    border: solid 2px black;
     
 }
 
-.displays{
-    display: flex;
-    flex-direction: column;
+
+
+
+.cal{
+    
     justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
+    border: solid 5px black;
+    border-radius: 10px;
+    margin: 40px;
+    height: 600px;
+    width: 400px;
+    background-color:  #E7E9EA;
+}
+
+
+
+.displays{
+    
+    flex-direction: column;
+    justify-content: space-around;    
     width: 350px;
     height: 120px;
     padding-right: 7px;
+    color: whitesmoke;
+    background-color:  #274C43;
+    border: solid px black;
+    border-radius: 10px;
 }
 
 .display{
     width: 350px;
     height: 40px;
-    display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     text-align: right;
     font-size: 25px;
+    
 
 }
 .display2{
-    display: flex;
+    
     align-items: flex-end;
     justify-content: flex-end;
     width: 350px;
@@ -56,46 +66,45 @@ body{
 }
 
 .buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    flex-wrap: wrap;
     height: 430px;
-    width: 360px;    
-    
-
+    width: 360px; 
 }
 
 .btn{
+    border: solid 2px;
+    border-radius: 10px;
     height: 80px;
-    width: 90px;
+    width: 86px;
     background-color: transparent;
+    margin: 2px;
+    font-size: 40px;
+    color: whitesmoke;
+    background-color: #1C1C1C;
 }
 
-
-
-
-.digits{
-    display: flex;
-    flex-wrap: wrap;
-    height: 430px;
-    width: 280px;
-    justify-content: space-around;
+.zero,.equal{
+    width: 176px;
 }
 
-.operators{
-    display: flex;
-    flex-wrap: wrap;
-    height: 430px;
-    width: 80px;
-    padding: 0;
-    margin: 0;
+#clear{
+    width: 266px;
 }
 
-#delete,#clear{
-    width: 135px;
+.copyright{
+    color: whitesmoke;
+    
 }
 
-.zero{
-    width: 180px;
+#logo{
+    height: 40px;
 }
+
+.btn:hover{
+    background-color: #2E3135;    
+}
+
+#clear:hover{
+    background-color: #882336 ;
+}
+
